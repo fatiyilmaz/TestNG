@@ -8,7 +8,7 @@ import techproed.utilities.ConfigReader;
 import techproed.utilities.Driver;
 
 public class Day21_techproLoginPage {
-    @Test
+    @Test(groups = "regression-tests")
     public void OpenSourceLogin() {
         //https://testcenter.techproeducation.com/index.php?page=form-authentication
         //Page object Model kullanarak sayfaya giriş yapildigini test edin

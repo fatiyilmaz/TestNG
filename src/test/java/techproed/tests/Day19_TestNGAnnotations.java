@@ -79,12 +79,12 @@ public class Day19_TestNGAnnotations {
         System.out.println("Test 1");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1,groups = "regression-tests")
     public void test2(){
         System.out.println("Test 2");
     }
 
-    @Test(enabled = false) // => Kullanima kapat demek
+    @Test(enabled = false,groups = "regression-tests") // => Kullanima kapat demek
     public void test3(){
         System.out.println("Test 3");
     }

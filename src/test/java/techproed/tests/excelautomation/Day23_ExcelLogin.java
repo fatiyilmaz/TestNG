@@ -1,5 +1,6 @@
 package techproed.tests.excelautomation;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import techproed.pages.BlueRentalHomePage;
 import techproed.pages.BlueRentalLoginPage;
@@ -8,6 +9,7 @@ import techproed.utilities.Driver;
 import techproed.utilities.ExcelUtils;
 import techproed.utilities.ReusableMethods;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -56,13 +58,25 @@ public class Day23_ExcelLogin {
         }catch (Exception e){
         }
 
-
     }
 
+//    @Test
+//    public void test () {
+//        String path = "./src/test/java/resources/mysmoketestdata.xlsx";
+////        ./ ONCEKI TUM DOSYALARI ICER. RELATIVE PATH.
+//        String sayfa = "customer_info";
+//        excelUtils = new ExcelUtils(path, sayfa);
+//        excelUtils.setCellData("team07", 1, 2);
+//        System.out.println(excelUtils.rowCount());
+//        System.out.println(excelUtils.columnCount());
+//        System.out.println(excelUtils.getCellData(3, 1));
+//        System.out.println(excelUtils.getColumnsNames());
+//    }
+
     @Test
-    public void customerLogin(){
+    public void customerLogin() throws IOException {
         //1.SAYFA YOLU
-        String path = "./src/test/java/resources_kaynakDosyasi/mysmoketestdata.xlsx";
+        String path = "./src/test/java/resources/mysmoketestdata.xlsx";
 //      ./ ONCEKI TUM DOSYALARI ICER. RELATIVE PATH.
 
         //2.SAYFA ISMI
@@ -87,10 +101,18 @@ public class Day23_ExcelLogin {
             //login butonuna tikla
             ReusableMethods.waitFor(1);
             blueRentalLoginPage.loginButton.click();
+            ReusableMethods.waitFor(1);
+            //Giris isleminin basarili oldugunu gostermek icin assertion yaptik
+            ReusableMethods.verifyElementDisplayed(blueRentalHomePage.userID);
+            ReusableMethods.waitFor(1);
+            //Her bir girisden sonra ekran goruntusu aldik
+            ReusableMethods.getScreenshot("EkranGoruntusu");
         }
+    }
 
-
-
+    @AfterMethod
+    public void tearDown(){
+        Driver.closeDriver();
     }
 }
 
